@@ -1,1 +1,69 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$desafio-CISS-front-primary: mat-palette($mat-light-blue);
+$desafio-CISS-front-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$desafio-CISS-front-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$desafio-CISS-front-theme: mat-light-theme((
+  color: (
+    primary: $desafio-CISS-front-primary,
+    accent: $desafio-CISS-front-accent,
+    warn: $desafio-CISS-front-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($desafio-CISS-front-theme);
+
 /* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(34,41,47,.1);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.text-center {
+  text-align: center;
+}
+
+h2 {
+  color: #505050;
+}
+
+.text-muted {
+  color: #969393;
+}
