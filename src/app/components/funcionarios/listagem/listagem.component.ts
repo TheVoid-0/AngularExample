@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from "@angular/router";
 import { Funcionario } from '../../../@core/Funcionario';
 import { NivelAcessoEnum } from 'src/app/@core/nivelAcessoEnum';
 
@@ -10,6 +10,10 @@ import { NivelAcessoEnum } from 'src/app/@core/nivelAcessoEnum';
 })
 
 export class ListagemFuncionarioComponent {
+    constructor (private router: Router) {
+
+    }
+
     colunas: string[] = ['nome', 'sobrenome', 'email', 'pis', 'editar', 'deletar'];
 
     funcionarios: Funcionario[] = [

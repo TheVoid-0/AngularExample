@@ -3,6 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'funcionarios/novo',
+    loadChildren: () => import('./components/funcionarios/cadastro/cadastro.module').then( m => m.CadastroFuncionarioModule)
+  },
+  {
     path: 'funcionarios',
     loadChildren: () => import('./components/funcionarios/listagem/listagem.module').then( m => m.ListagemFuncionarioModule)
   },

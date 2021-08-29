@@ -1,0 +1,17 @@
+#cadastro {
+    height: calc(100vh - 200px);
+    overflow-y: auto;
+    padding: 0 20px;
+
+    .title {
+        margin-top: 40px;
+    }
+
+    .center-end {
+        margin-bottom: 15px;
+    }
+
+    mat-form-field {
+        width: 90%;
+    }
+}

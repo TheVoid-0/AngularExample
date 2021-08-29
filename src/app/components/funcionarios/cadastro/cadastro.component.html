@@ -1,0 +1,61 @@
+<app-navbar></app-navbar>
+
+<div id="cadastro">
+    <h2>Cadastro de Funcionários</h2>
+    <button mat-raised-button color="primary" [routerLink]="'..'">Voltar para listagem</button>
+
+    <p class="text-muted title">Preencha os campos a seguir para salvar um funcionário.</p>
+
+    
+    <form class="cadastro-form">
+        <div fxLayout="row wrap" fxFill>
+            <div fxFlex="100" fxFlex.gt-sm="33">
+                <mat-form-field class="example-full-width"> 
+                    <mat-label>Nome</mat-label>
+                    <input matInput type="text" name="nome">
+                </mat-form-field>
+            </div>
+    
+            <div fxFlex="100" fxFlex.gt-sm="33">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Sobrenome</mat-label>
+                    <input matInput type="text" name="sobrenome">
+                </mat-form-field>
+            </div>
+    
+            <div fxFlex="100" fxFlex.gt-sm="33">
+                <mat-form-field class="example-full-width">
+                    <mat-label>E-mail</mat-label>
+                    <input matInput type="email" name="email">
+                </mat-form-field>
+            </div>
+
+            <div fxFlex="100" fxFlex.gt-sm="33">
+                <mat-form-field class="example-full-width"> 
+                    <mat-label>NIS / PIS</mat-label>
+                    <input matInput type="text" name="pis">
+                </mat-form-field>
+            </div>
+    
+            <div fxFlex="100" fxFlex.gt-sm="33">
+                <mat-form-field>
+                    <mat-label>Nível de acesso</mat-label>
+                    <mat-select>
+                    <mat-option [value]="0">Normal</mat-option>
+                    <mat-option [value]="1">Admin</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+        </div>
+
+    </form>
+    
+    
+    <div class="center-end">
+        <button mat-raised-button color="accent">Salvar</button>
+    </div>
+    
+</div>
+
+<app-footer></app-footer>

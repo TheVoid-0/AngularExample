@@ -11,6 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTableModule} from '@angular/material/table';
+import {MatSelectModule} from '@angular/material/select';
 
 import {NavbarComponent} from './navbar/navbar.component';
 import {FooterComponent} from './footer/footer.component';
@@ -26,7 +27,9 @@ import {FooterComponent} from './footer/footer.component';
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule,
+    FlexLayoutModule
   ],
   exports: [
     MatCardModule,
@@ -36,6 +39,8 @@ import {FooterComponent} from './footer/footer.component';
     MatButtonModule,
     MatToolbarModule,
     MatTableModule,
+    MatSelectModule,
+    FlexLayoutModule,
     NavbarComponent,
     FooterComponent
   ],
