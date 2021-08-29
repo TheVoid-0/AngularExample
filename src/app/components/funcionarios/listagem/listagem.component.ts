@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { Funcionario } from '../../../@core/Funcionario';
 import { NivelAcessoEnum } from 'src/app/@core/nivelAcessoEnum';
-
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { PesquisaDialogComponent } from '../../shared/pesquisa-dialog/pesquisa-dialog.component';
 @Component({
     selector: 'app-listagem-funcionario',
     templateUrl: './listagem.component.html',
@@ -10,7 +11,7 @@ import { NivelAcessoEnum } from 'src/app/@core/nivelAcessoEnum';
 })
 
 export class ListagemFuncionarioComponent {
-    constructor (private router: Router) {
+    constructor (private router: Router, public dialog: MatDialog) {
 
     }
 
@@ -31,6 +32,18 @@ export class ListagemFuncionarioComponent {
         }
     ];
 
+    // objeto do funcionário usado no dialog de pesquisa
+    funcionarioPesquisa: Funcionario = {
+        id: 0,
+        nome: '',
+        sobrenome: '',
+        email: '',
+        pis: '',
+        dataCriacao: '',
+        nivelAcesso: NivelAcessoEnum.NORMAL
+    }
+
+    // validar onde e qual ícone de ordenação será exibido
     checkIcon(field) {
         if (field === this.orderField) {
             if (this.orderDirection === 'asc') {
@@ -44,6 +57,7 @@ export class ListagemFuncionarioComponent {
         
     }
 
+    // alterar a ordenação
     changeOrder(field) {
         // se o campo for o mesmo que já está ordenando então somente altera a direção
         if ( this.orderField == field) {
@@ -59,4 +73,17 @@ export class ListagemFuncionarioComponent {
             this.orderDirection = 'asc';
         }
     }
+
+    // pesquisa
+    openPesquisaDialog(): void {
+        const dialogRef = this.dialog.open(PesquisaDialogComponent, {
+          width: '250px',
+          data: this.funcionarioPesquisa
+        });
+    
+        dialogRef.afterClosed().subscribe(result => {
+            // TODO: fazer a busca  
+          console.log('The dialog was closed', result);
+        });
+      }
 }
