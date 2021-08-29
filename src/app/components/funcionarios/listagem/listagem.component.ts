@@ -14,7 +14,10 @@ export class ListagemFuncionarioComponent {
 
     }
 
-    colunas: string[] = ['nome', 'sobrenome', 'email', 'pis', 'editar', 'deletar'];
+    colunas: string[] = ['nome', 'sobrenome', 'email', 'pis', 'dataCriacao', 'editar', 'deletar'];
+    resultsLength: number = 12;
+    orderField : string = '';
+    orderDirection : string = '';
 
     funcionarios: Funcionario[] = [
         {
@@ -23,7 +26,37 @@ export class ListagemFuncionarioComponent {
             sobrenome: 'Moura',
             email: 'marcodnmoura@gmail.com',
             pis: '12345648',
+            dataCriacao: '29/08/2021',
             nivelAcesso: NivelAcessoEnum.ADMIN
         }
-    ]
+    ];
+
+    checkIcon(field) {
+        if (field === this.orderField) {
+            if (this.orderDirection === 'asc') {
+                return 'arrow_downward';
+            } else if (this.orderDirection === 'desc') {
+                return 'arrow_upward';
+            } else {
+                return '';
+            }
+        }
+        
+    }
+
+    changeOrder(field) {
+        // se o campo for o mesmo que já está ordenando então somente altera a direção
+        if ( this.orderField == field) {
+            if (this.orderDirection === 'asc') {
+                this.orderDirection = 'desc';
+            } else if (this.orderDirection === 'desc') {
+                this.orderDirection = '';
+            } else {
+                this.orderDirection = 'asc';
+            }
+        } else {
+            this.orderField = field;
+            this.orderDirection = 'asc';
+        }
+    }
 }

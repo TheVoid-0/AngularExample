@@ -1,6 +1,7 @@
 #listagem {
-    height: calc(100% - 100px);
+    height: calc(100vh - 140px);
     padding: 0 20px;
+    overflow: auto;
 
     h2 {
         margin-bottom: 0;
@@ -11,21 +12,49 @@
     }
 
     table {
-        margin-top: 20px;
         width: 100%;
     }
 
     .responsive {
         max-width: 100%;
-        overflow-x: auto;
+        max-height: calc(100vh - 300px);
+        overflow: auto;
     }
 
+    .mt {
+        margin-top: 20px;
+        display: block;
+    }
+
+    mat-paginator {
+        margin-bottom: 20px;
+    }
+
+    .order, th {
+        cursor: pointer;
+    }
+
+    .order-content {
+        display: flex;
+        align-items: center;
+    }
+
+    .order {
+        font-size: 16px;
+        height: 16px;
+        width: 16px;
+    }
 }
 
 @media screen and (max-width: 460px) {
     #listagem {
+        height: calc(100vh - 200px);
         .center-between {
             display: block;
         }
+    }
+
+    .responsive {
+        max-height: calc(100vh - 500px);
     }
 }

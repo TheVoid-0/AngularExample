@@ -3,8 +3,8 @@
       <div class="center-between">
         <img src="../../../assets/static/images/logo_menu.jpeg" alt="logo" height="35" />
         <div class="menu">
-            <div class="option">
-                <a href="#">Nome do Funcionário</a>
+            <div class="option" [routerLink]="'novo'">
+                <a>Nome do Funcionário</a>
             </div>
             <div class="center option" (click)="sair()">
                 <mat-icon>exit_to_app</mat-icon><a> Sair</a>

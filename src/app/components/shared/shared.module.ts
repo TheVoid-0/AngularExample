@@ -12,6 +12,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import {NavbarComponent} from './navbar/navbar.component';
 import {FooterComponent} from './footer/footer.component';
@@ -21,6 +23,7 @@ import {FooterComponent} from './footer/footer.component';
     FooterComponent,
   ],
   imports: [
+    RouterModule,
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
@@ -29,7 +32,9 @@ import {FooterComponent} from './footer/footer.component';
     MatToolbarModule,
     MatTableModule,
     MatSelectModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatPaginatorModule,
+    MatDialogModule,
   ],
   exports: [
     MatCardModule,
@@ -41,6 +46,8 @@ import {FooterComponent} from './footer/footer.component';
     MatTableModule,
     MatSelectModule,
     FlexLayoutModule,
+    MatPaginatorModule,
+    MatDialogModule,
     NavbarComponent,
     FooterComponent
   ],

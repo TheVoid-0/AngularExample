@@ -10,5 +10,8 @@ import { NivelAcessoEnum } from 'src/app/@core/nivelAcessoEnum';
 })
 
 export class CadastroFuncionarioComponent {
-    
+    public NivelAcessoEnum;
+    constructor(){
+        this.NivelAcessoEnum = NivelAcessoEnum
+    }
 }
