@@ -1,0 +1,48 @@
+.mat-toolbar {
+    background-color: white;
+}
+
+.center-between {
+    width: 100%;
+}
+
+.menu {
+    font-size: 16px;
+    font-weight: normal;
+    text-decoration: none;
+    display: flex;
+
+    .option {
+        cursor: pointer;
+    }
+
+    .mat-icon {
+        font-size: 18px!important;
+        height: 18px;
+        width: 18px;
+        color: #505050;
+    }
+
+    a {
+        margin-right: 20px;
+        text-decoration: none;
+        color: #505050;
+    }
+
+    .option:hover {
+        a, .mat-icon {
+            color: #09c0ec!important;
+            transition: all .4s;
+        }
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .center-between {
+        display: block;
+    }
+
+    .mat-toolbar-row, .mat-toolbar-single-row {
+        height: 90px;
+    }
+}

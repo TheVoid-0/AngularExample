@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatCard } from '@angular/material/card';
+import { Router } from "@angular/router";
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -9,11 +9,15 @@ import { MatCard } from '@angular/material/card';
 
 export class LoginComponent implements OnInit {
 
-    constructor() {
+    constructor(private router: Router) {
 
     }
 
     ngOnInit(): void {
+    }
+
+    entrar(): void {
+        this.router.navigate(['/funcionarios']);
     }
 
 }

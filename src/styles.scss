@@ -13,7 +13,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $desafio-CISS-front-primary: mat-palette($mat-light-blue);
-$desafio-CISS-front-accent: mat-palette($mat-pink, A200, A100, A400);
+$desafio-CISS-front-accent: mat-palette($mat-green);
 
 // The warn palette is optional (defaults to red).
 $desafio-CISS-front-warn: mat-palette($mat-red);
@@ -34,7 +34,7 @@ $desafio-CISS-front-theme: mat-light-theme((
 @include angular-material-theme($desafio-CISS-front-theme);
 
 /* You can add global styles to this file, and also import other style files */
-html, body { height: 100%; }
+html, body { height: 100%; background-color: #f0f9ff; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 hr {
@@ -56,6 +56,12 @@ hr {
   justify-content: flex-end;
 }
 
+.center-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .text-center {
   text-align: center;
 }
@@ -66,4 +72,8 @@ h2 {
 
 .text-muted {
   color: #969393;
+}
+
+.mat-accent {
+  color: white!important;
 }
