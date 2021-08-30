@@ -17,7 +17,7 @@
 
     .responsive {
         max-width: 100%;
-        max-height: calc(100vh - 300px);
+        max-height: calc(100vh - 380px);
         overflow: auto;
     }
 
@@ -52,9 +52,9 @@
         .center-between {
             display: block;
         }
-    }
 
-    .responsive {
-        max-height: calc(100vh - 500px);
+        .responsive {
+            max-height: calc(100vh - 450px);
+        }
     }
 }

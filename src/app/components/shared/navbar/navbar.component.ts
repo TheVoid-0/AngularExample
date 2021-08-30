@@ -14,5 +14,6 @@ export class NavbarComponent {
 
     sair(): void {
         this.router.navigate([''], { replaceUrl: true });
+        localStorage.clear();
     }
 }

@@ -7,6 +7,6 @@ export class Funcionario
     sobrenome: string;
     email: string;
     pis: string;
-    dataCriacao: string;
+    dataCadastro: string;
     nivelAcesso: NivelAcessoEnum
 }

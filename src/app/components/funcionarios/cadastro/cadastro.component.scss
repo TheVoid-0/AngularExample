@@ -1,5 +1,5 @@
 #cadastro {
-    height: calc(100vh - 200px);
+    height: calc(100vh - 160px);
     overflow-y: auto;
     padding: 0 20px;
 
@@ -10,5 +10,11 @@
 
     mat-form-field {
         width: 90%;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    #cadastro {
+        height: calc(100vh - 220px);
     }
 }

@@ -1,30 +1,31 @@
 <div id="login-content">
-    <mat-card>
-        <div class="center">
-            <img src="../../../assets/static/images/ciss_logo.jpeg" alt="logo" width="250">
-        </div>
+  <mat-card>
+    <div class="center">
+      <img src="../../../assets/static/images/ciss_logo.jpeg" alt="logo" width="250">
+    </div>
 
-        <hr/>
-        
-        <h2 class="text-center">Sistema de Funcionários</h2>
-        <h4 class="text-muted">Informe os campos a baixo para efetuar login</h4>
+    <hr />
 
-        <form class="login-form">
-            <mat-form-field class="example-full-width"> 
-              <mat-label>E-mail</mat-label>
-              <input matInput type="email">
-            </mat-form-field>
+    <h2 class="text-center">Sistema de Funcionários</h2>
+    <h4 class="text-muted">Informe os campos a baixo para efetuar login</h4>
 
-            <mat-form-field class="example-full-width">
-                <mat-label>Senha</mat-label>
-                <input matInput type="password">
-                <mat-icon matSuffix>visibility</mat-icon>
-              </mat-form-field>
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="entrar()">
+      <mat-form-field class="example-full-width">
+        <mat-label>E-mail</mat-label>
+        <input matInput type="email" formControlName="email">
+      </mat-form-field>
 
-              <div class="center-end">
-                <button (click)="entrar()" mat-raised-button color="primary">Entrar</button>
-              </div>
-        </form>
+      <mat-form-field class="example-full-width">
+        <mat-label>Senha</mat-label>
+        <input matInput [type]="tipoSenha" formControlName="senha">
+        <mat-icon class="visibility" matSuffix (click)="changeTipoSenha()">visibility</mat-icon>
+      </mat-form-field>
 
-    </mat-card>
+      <span class="text-muted" style="color: red" [hidden]="!loginFailed">Credenciais inválidas!</span>
+      <div class="center-end">
+        <button type="submit" mat-raised-button color="primary" [disabled]="isSubmitted">Entrar</button>
+      </div>
+    </form>
+
+  </mat-card>
 </div>
