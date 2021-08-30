@@ -1,4 +1,3 @@
-export enum NivelAcessoEnum
-{
-    NORMAL = 0, ADMIN = 1
+export enum NivelAcessoEnum {
+    NORMAL = 'NORMAL', ADMIN = 'ADMIN'
 }

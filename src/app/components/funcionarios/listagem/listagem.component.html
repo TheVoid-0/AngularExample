@@ -5,7 +5,8 @@
         <div>
             <h2>Listagem de Funcionários</h2>
         </div>
-        <button mat-raised-button color="accent" [routerLink]="'novo'">Novo Funcionário</button>
+        <button *ngIf="funcionarioLogado.nivelAcesso == NivelAcessoEnum.ADMIN" mat-raised-button color="accent"
+            [routerLink]="'form/cadastro'">Novo Funcionário</button>
     </div>
 
     <div>
@@ -63,16 +64,16 @@
             <ng-container matColumnDef="editar">
                 <th mat-header-cell *matHeaderCellDef> Editar </th>
                 <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button aria-label="Editar este funcionário">
+                    <button mat-icon-button aria-label="Editar este funcionário" (click)="editarFuncionario(element)">
                         <mat-icon>edit</mat-icon>
                     </button>
                 </td>
             </ng-container>
 
-            <ng-container matColumnDef="deletar">
+            <ng-container  matColumnDef="deletar">
                 <th mat-header-cell *matHeaderCellDef> Deletar </th>
                 <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button aria-label="Deletar este funcionário">
+                    <button mat-icon-button aria-label="Deletar este funcionário" (click)="deletarFuncionario(element)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </td>

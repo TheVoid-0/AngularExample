@@ -1,15 +1,16 @@
 <p>
-    <mat-toolbar>
-      <div class="center-between">
-        <img src="../../../assets/static/images/logo_menu.jpeg" alt="logo" height="35" />
-        <div class="menu">
-            <div class="option" [routerLink]="'novo'">
-                <a>Nome do Funcionário</a>
-            </div>
-            <div class="center option" (click)="sair()">
-                <mat-icon>exit_to_app</mat-icon><a> Sair</a>
-            </div>
+  <mat-toolbar>
+    <div class="center-between">
+      <a  [replaceUrl]="true" [routerLink]="['/funcionarios']"><img src="../../../assets/static/images/logo_menu.jpeg"
+          alt="logo" height="35" /></a>
+      <div class="menu">
+        <div class="option" [routerLink]="['/funcionarios/form/profile']">
+          <a>{{usuario.nome}}</a>
+        </div>
+        <div class="center option" (click)="sair()">
+          <mat-icon>exit_to_app</mat-icon><a> Sair</a>
         </div>
       </div>
-    </mat-toolbar>
+    </div>
+  </mat-toolbar>
 </p>

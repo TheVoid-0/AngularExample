@@ -23,105 +23,15 @@ enum Order {
 })
 export class ListagemFuncionarioComponent implements OnInit {
 
-    colunas: string[] = ['nome', 'sobrenome', 'email', 'pis', 'dataCadastro', 'editar', 'deletar'];
     resultsLength: number = 0;
     orderField: string = 'nome';
     orderDirection: string = '';
     isLoading: boolean = false;
     currentPage: string = '0';
-    funcionarios: Funcionario[] = [
-        {
-            id: 1,
-            nome: 'Marco',
-            sobrenome: 'Moura',
-            email: 'marcodnmoura@gmail.com',
-            pis: '12345648',
-            dataCadastro: '29/08/2021',
-            nivelAcesso: NivelAcessoEnum.ADMIN
-        },
-        {
-            id: 1,
-            nome: 'Marco',
-            sobrenome: 'Moura',
-            email: 'marcodnmoura@gmail.com',
-            pis: '12345648',
-            dataCadastro: '29/08/2021',
-            nivelAcesso: NivelAcessoEnum.ADMIN
-        },
-        {
-            id: 1,
-            nome: 'Marco',
-            sobrenome: 'Moura',
-            email: 'marcodnmoura@gmail.com',
-            pis: '12345648',
-            dataCadastro: '29/08/2021',
-            nivelAcesso: NivelAcessoEnum.ADMIN
-        },
-        {
-            id: 1,
-            nome: 'Marco',
-            sobrenome: 'Moura',
-            email: 'marcodnmoura@gmail.com',
-            pis: '12345648',
-            dataCadastro: '29/08/2021',
-            nivelAcesso: NivelAcessoEnum.ADMIN
-        },
-        {
-            id: 1,
-            nome: 'Marco',
-            sobrenome: 'Moura',
-            email: 'marcodnmoura@gmail.com',
-            pis: '12345648',
-            dataCadastro: '29/08/2021',
-            nivelAcesso: NivelAcessoEnum.ADMIN
-        },
-        {
-            id: 1,
-            nome: 'Marco',
-            sobrenome: 'Moura',
-            email: 'marcodnmoura@gmail.com',
-            pis: '12345648',
-            dataCadastro: '29/08/2021',
-            nivelAcesso: NivelAcessoEnum.ADMIN
-        },
-        {
-            id: 1,
-            nome: 'Marco',
-            sobrenome: 'Moura',
-            email: 'marcodnmoura@gmail.com',
-            pis: '12345648',
-            dataCadastro: '29/08/2021',
-            nivelAcesso: NivelAcessoEnum.ADMIN
-        },
-        {
-            id: 1,
-            nome: 'Marco',
-            sobrenome: 'Moura',
-            email: 'marcodnmoura@gmail.com',
-            pis: '12345648',
-            dataCadastro: '29/08/2021',
-            nivelAcesso: NivelAcessoEnum.ADMIN
-        },
-        {
-            id: 1,
-            nome: 'Marco',
-            sobrenome: 'Moura',
-            email: 'marcodnmoura@gmail.com',
-            pis: '12345648',
-            dataCadastro: '29/08/2021',
-            nivelAcesso: NivelAcessoEnum.ADMIN
-        },
-        {
-            id: 1,
-            nome: 'Marco',
-            sobrenome: 'Moura',
-            email: 'marcodnmoura@gmail.com',
-            pis: '12345648',
-            dataCadastro: '29/08/2021',
-            nivelAcesso: NivelAcessoEnum.ADMIN
-        },
-    ];
-
+    funcionarios: Funcionario[] = [];
+    funcionarioLogado: Funcionario = JSON.parse(localStorage.getItem(STORAGE_KEYS.USER_INFO))
+    colunas: string[] = ['nome', 'sobrenome', 'email', 'pis', 'dataCadastro'];
+    NivelAcessoEnum = NivelAcessoEnum
     // objeto do funcionário usado no dialog de pesquisa
     funcionarioPesquisa: Funcionario = {
         id: 0,
@@ -140,6 +50,17 @@ export class ListagemFuncionarioComponent implements OnInit {
     ngOnInit(): void {
         this.isLoading = true;
         this.filtrarFuncionarios();
+        if (this.funcionarioLogado.nivelAcesso == NivelAcessoEnum.ADMIN) {
+            this.colunas.push('editar', 'deletar');
+        }
+    }
+
+    editarFuncionario(element) {
+        this.router.navigate(['funcionarios/form/', element.id]);
+    }
+
+    deletarFuncionario(element) {
+        console.log('deletar', element);
     }
 
     private filtrarFuncionarios() {
@@ -170,7 +91,7 @@ export class ListagemFuncionarioComponent implements OnInit {
             this.isLoading = false;
             console.log(data);
             this.mapFuncionarios(data.content);
-            this.resultsLength = this.funcionarios.length
+            this.resultsLength = data.totalCount;
 
             console.log(this.funcionarios)
         }, error => {
@@ -233,8 +154,10 @@ export class ListagemFuncionarioComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
             console.log('The dialog was closed', result);
+            if (!result) return;
             this.funcionarioPesquisa = result;
-            this.funcionarioPesquisa.dataCadastro = DateUtil.formatDateToISO(this.funcionarioPesquisa.dataCadastro);
+            let dateString = DateUtil.formatDateToISO(this.funcionarioPesquisa.dataCadastro);
+            this.funcionarioPesquisa.dataCadastro = dateString ? new Date(dateString) : ''
             this.filtrarFuncionarios();
         });
     }
@@ -242,5 +165,6 @@ export class ListagemFuncionarioComponent implements OnInit {
     pageListener(event: PageEvent) {
         console.log('pageListener', event)
         this.currentPage = event.pageIndex.toString()
+        this.filtrarFuncionarios();
     }
 }

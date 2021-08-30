@@ -4,12 +4,16 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 
 import { CadastroFuncionarioComponent } from './cadastro.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     imports: [
-        CommonModule, 
+        CommonModule,
         SharedModule,
-        RouterModule.forChild([{ path: '', component: CadastroFuncionarioComponent }]),
+        RouterModule.forChild([{ path: ':profile', component: CadastroFuncionarioComponent }]),
+        ReactiveFormsModule,
+        MatSnackBarModule
     ],
     declarations: [CadastroFuncionarioComponent]
 })

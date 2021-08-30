@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'funcionarios/novo',
+    path: 'funcionarios/form',
     loadChildren: () => import('./components/funcionarios/cadastro/cadastro.module').then( m => m.CadastroFuncionarioModule)
   },
   {
