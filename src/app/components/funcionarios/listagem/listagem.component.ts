@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from "@angular/router";
 import { Funcionario } from '../../../@core/Funcionario';
 import { NivelAcessoEnum } from 'src/app/@core/nivelAcessoEnum';
@@ -9,6 +9,8 @@ import { environment } from 'src/environments/environment';
 import { STORAGE_KEYS } from 'src/app/@core/constants';
 import { PageEvent } from '@angular/material/paginator';
 import { DateUtil, stringfyObjectValues } from 'src/app/@core/util';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTable } from '@angular/material/table';
 
 
 enum Order {
@@ -42,9 +44,9 @@ export class ListagemFuncionarioComponent implements OnInit {
         dataCadastro: '',
         nivelAcesso: NivelAcessoEnum.NORMAL
     }
+    @ViewChild(MatTable) table: MatTable<any>;
 
-
-    constructor(private router: Router, public dialog: MatDialog, private http: HttpClient) {
+    constructor(private router: Router, public dialog: MatDialog, private http: HttpClient, private snackBar: MatSnackBar) {
 
     }
     ngOnInit(): void {
@@ -61,6 +63,21 @@ export class ListagemFuncionarioComponent implements OnInit {
 
     deletarFuncionario(element) {
         console.log('deletar', element);
+        this.http.delete(`/usuarios/${element.id}`, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem(STORAGE_KEYS.AUTH) } }).subscribe((data: any) => {
+            let snackBarRef = this.snackBar.open('Funcionário deletado!');
+            this.funcionarios.splice(this.funcionarios.indexOf(element), 1);
+            this.table.renderRows();
+            console.log(this.funcionarios)
+            setTimeout(() => {
+                snackBarRef.dismiss();
+            }, 3000);
+        }, error => {
+            console.log('error', error);
+            let snackBarRef = this.snackBar.open('Ocorreu um erro!');
+            setTimeout(() => {
+                snackBarRef.dismiss();
+            }, 3000);
+        })
     }
 
     private filtrarFuncionarios() {
@@ -77,7 +94,7 @@ export class ListagemFuncionarioComponent implements OnInit {
                 }
             }
         }
-        this.http.get(environment.apiUrl + '/usuario', {
+        this.http.get('/usuarios', {
             params: {
                 ...stringfyObjectValues(this.funcionarioPesquisa),
                 page: this.currentPage,

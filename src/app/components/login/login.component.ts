@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
         }
         this.isSubmitted = true;
         const formValue = this.loginForm.value;
-        this.http.post(environment.apiUrl + '/usuario/auth', formValue).subscribe((data: any) => {
+        this.http.post('/usuarios/auth', formValue).subscribe((data: any) => {
             this.isSubmitted = false;
             localStorage.setItem(STORAGE_KEYS.AUTH, data.jwtToken);
             delete data.jwtToken;

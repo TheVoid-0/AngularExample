@@ -74,7 +74,7 @@ export class CadastroFuncionarioComponent implements OnDestroy, OnInit {
     loadProfile() {
         let funcionario: Funcionario = JSON.parse(localStorage.getItem(STORAGE_KEYS.USER_INFO))
         let auth: string = localStorage.getItem(STORAGE_KEYS.AUTH);
-        this.http.get(`${environment.apiUrl}/usuario/${funcionario.id}`, { headers: { 'Authorization': 'Bearer ' + auth } }).subscribe((data: any) => {
+        this.http.get(`/usuarios/${funcionario.id}`, { headers: { 'Authorization': 'Bearer ' + auth } }).subscribe((data: any) => {
             console.log(data);
             this.funcionario = data;
             this.cadastroForm.setValue(data);
@@ -85,7 +85,7 @@ export class CadastroFuncionarioComponent implements OnDestroy, OnInit {
 
     loadEditFuncionario() {
         let auth: string = localStorage.getItem(STORAGE_KEYS.AUTH);
-        this.http.get(`${environment.apiUrl}/usuario/${this.funcionarioEditId}`, { headers: { 'Authorization': 'Bearer ' + auth } }).subscribe((data: any) => {
+        this.http.get(`/usuarios/${this.funcionarioEditId}`, { headers: { 'Authorization': 'Bearer ' + auth } }).subscribe((data: any) => {
             console.log(data);
             this.funcionario = data;
             this.cadastroForm.setValue(data);
@@ -97,7 +97,7 @@ export class CadastroFuncionarioComponent implements OnDestroy, OnInit {
 
     submitEditFuncionario() {
         let auth: string = localStorage.getItem(STORAGE_KEYS.AUTH);
-        this.http.put(`${environment.apiUrl}/usuario/${this.funcionarioEditId}`, this.cadastroForm.value, { headers: { 'Authorization': 'Bearer ' + auth } }).subscribe((data: any) => {
+        this.http.put(`/usuarios/${this.funcionarioEditId}`, this.cadastroForm.value, { headers: { 'Authorization': 'Bearer ' + auth } }).subscribe((data: any) => {
             console.log(data);
             this.isSubmitted = false;
             let snackBarRef = this.snackBar.open('Cadastro Atualizado!', null, { duration: 3000 });
@@ -113,7 +113,7 @@ export class CadastroFuncionarioComponent implements OnDestroy, OnInit {
     submitProfile() {
         let funcionario: Funcionario = JSON.parse(localStorage.getItem(STORAGE_KEYS.USER_INFO))
         let auth: string = localStorage.getItem(STORAGE_KEYS.AUTH);
-        this.http.put(`${environment.apiUrl}/usuario/${funcionario.id}`, this.cadastroForm.value, { headers: { 'Authorization': 'Bearer ' + auth } }).subscribe((data: any) => {
+        this.http.put(`/usuarios/${funcionario.id}`, this.cadastroForm.value, { headers: { 'Authorization': 'Bearer ' + auth } }).subscribe((data: any) => {
             console.log(data);
             this.isSubmitted = false;
             let snackBarRef = this.snackBar.open('Cadastro Atualizado!', null, { duration: 3000 });
@@ -128,7 +128,7 @@ export class CadastroFuncionarioComponent implements OnDestroy, OnInit {
 
     submitCadastro() {
         let auth: string = localStorage.getItem(STORAGE_KEYS.AUTH);
-        this.http.post(`${environment.apiUrl}/usuario`, this.cadastroForm.value, { headers: { 'Authorization': 'Bearer ' + auth } }).subscribe((data: any) => {
+        this.http.post(`/usuarios`, this.cadastroForm.value, { headers: { 'Authorization': 'Bearer ' + auth } }).subscribe((data: any) => {
             console.log(data);
             this.isSubmitted = false;
             let snackBarRef = this.snackBar.open('Funcionário Cadastrado!', null, { duration: 3000 });
