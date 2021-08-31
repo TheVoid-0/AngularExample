@@ -201,7 +201,7 @@ export class CadastroFuncionarioComponent implements OnDestroy, OnInit {
                     [
                         Validators.required,
                         Validators.minLength(11),
-                        Validators.maxLength(11)
+                        Validators.maxLength(14)
                     ]
                 ),
                 nivelAcesso: new FormControl(
